@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using static RimTest.Assertion;
 
 namespace RimTest.tests
@@ -22,21 +21,20 @@ namespace RimTest.tests
         [Test]
         public static void PassWhenValid()
         {
-            Type type = typeof(MockValidTestSuite);
-            AssertFunc( () => RimTest.IsValidTestSuite(type) ).Not.To.Throw();
+            AssertFunc( () => RimTest.IsValidTestSuite(typeof(MockValidTestSuite)) ).Not.To.Throw();
         }
 
         [Test]
         public static void PassWhenPublic()
         {
-            Type type = typeof(MockValidTestSuite).GetTypeInfo();
-            Assert(RimTest.CheckTestSuiteIsPublic(type)).To.Be.True();
+            Type type = ;
+            Assert(RimTest.CheckTestSuiteIsPublic(typeof(MockValidTestSuite))).To.Be.True();
         }
 
         [Test]
         public static void ThrowWhenNonPublic()
         {
-            Type type = typeof(MockNonPublicTestSuite).GetTypeInfo();
+            Type type = typeof(MockNonPublicTestSuite);
             Assert(RimTest.CheckTestSuiteIsPublic(type)).To.Be.False();
             AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
         }
@@ -59,24 +57,21 @@ namespace RimTest.tests
         [Test]
         public static void PassWhenStatic()
         {
-            Type type = typeof(MockValidTestSuite).GetTypeInfo();
-            Assert(RimTest.CheckTestSuiteIsStatic(type)).To.Be.True();
+            Assert(RimTest.CheckTestSuiteIsStatic(typeof(MockValidTestSuite))).To.Be.True();
         }
 
         [Test]
         public static void ThrowWhenNonStatic()
         {
-            Type type = typeof(MockNonStaticTestSuite).GetTypeInfo();
+            Type type = typeof(MockNonStaticTestSuite);
             Assert(RimTest.CheckTestSuiteIsStatic(type)).To.Be.False();
             AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
         }
         [Test]
         public static void ThrowWhenInvalid()
         {
-            Type type = typeof(MockNonStaticTestSuite).GetTypeInfo();
-            AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
-            type = typeof(MockNonPublicTestSuite).GetTypeInfo();
-            AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
+            AssertFunc(() => RimTest.IsValidTestSuite(typeof(MockNonStaticTestSuite))).To.Throw();
+            AssertFunc(() => RimTest.IsValidTestSuite(typeof(MockNonPublicTestSuite))).To.Throw();
         }
     }
 }
