@@ -8,6 +8,11 @@ namespace RimTest
 {
     class RimTest
     {
+        public static string SKIP = "➥";
+        public static string FAIL = "✘";
+        public static string PASS = "✓";
+
+
         public static void IsValidTestSuite(Type testSuite)
         {
             if(testSuite == null)
@@ -89,18 +94,18 @@ namespace RimTest
             }
             catch (Exception e)
             {
-                Log.Message($"    [SKIP] {e.InnerException}");
+                Log.Message($"    [{SKIP}] {e.InnerException}");
                 return;
             }
             try
             {
                 // tests are static (null reference object) and do NOT accept arguments (null parameters array)
                 method.Invoke(null, null);
-                Log.Message($"    [PASS] {method.Name}");
+                Log.Message($"    [{PASS}] {method.Name}");
             }
             catch (Exception e)
             {
-                Log.Error($"    [FAIL] {method.Name}: {e.InnerException} \n___________MESSAGE\n{e.Message}\n__________STACKTRACE:\n{e.StackTrace}");
+                Log.Error($"    [{FAIL}] {method.Name}: {e.InnerException} \n___________MESSAGE\n{e.Message}\n__________STACKTRACE:\n{e.StackTrace}");
             }
         }
 
@@ -112,7 +117,7 @@ namespace RimTest
             }
             catch (Exception e)
             {
-                Log.Warning($"  [SKIP] {e.InnerException}");
+                Log.Warning($"  [{SKIP}] {e.InnerException}");
                 return;
             }
             Log.Message($"  TEST SUITE: {testSuite.FullName}");
@@ -132,7 +137,7 @@ namespace RimTest
 
                     if (!(testSuite.IsClass && testSuite.IsSealed && testSuite.IsAbstract))
                     {
-                        Log.Error($"  [SKIP] {testSuite.Name} INVALID: test suite must be a static class.");
+                        Log.Error($"  [{SKIP}] {testSuite.Name} INVALID: test suite must be a static class.");
                         continue;
                     }
                     if (!testFound)
