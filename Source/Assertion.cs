@@ -91,6 +91,14 @@ namespace RimTest
             }
         }
 
+        public AssertValue Do
+        {
+            get
+            {
+                return this;
+            }
+        }
+
         public void EqualTo(IComparable otherThing)
         {
             bool result = thing.CompareTo(otherThing) == 0;
@@ -165,8 +173,6 @@ namespace RimTest
         {
             get
             {
-                if (func == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 negated = !negated;
                 return this;
             }
@@ -177,8 +183,6 @@ namespace RimTest
         {
             get
             {
-                if (func == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 return this;
             }
         }
@@ -188,8 +192,6 @@ namespace RimTest
         {
             get
             {
-                if (func == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 return this;
             }
         }
@@ -199,8 +201,14 @@ namespace RimTest
         {
             get
             {
-                if (func == null) throw new NullReferenceException("AssertFunc function cannot be null");
+                return this;
+            }
+        }
 
+        public new AssertFunc Do
+        {
+            get
+            {
                 return this;
             }
         }
@@ -236,8 +244,6 @@ namespace RimTest
         {
             get
             {
-                if (action == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 negated = !negated;
                 return this;
             }
@@ -248,8 +254,6 @@ namespace RimTest
         {
             get
             {
-                if (action == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 return this;
             }
         }
@@ -259,8 +263,6 @@ namespace RimTest
         {
             get
             {
-                if (action == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 return this;
             }
         }
@@ -270,11 +272,18 @@ namespace RimTest
         {
             get
             {
-                if (action == null) throw new NullReferenceException("AssertFunc function cannot be null");
-
                 return this;
             }
         }
+
+        public new AssertAction Do
+        {
+            get
+            {
+                return this;
+            }
+        }
+
         public void Throw()
         {
             if (action == null) throw new NullReferenceException("AssertFunc function cannot be null");
