@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace RimTest.tests
+namespace RimTest
 {
-    internal class TestAttribute : Attribute
+    internal class Test : Attribute
     { }
 }
