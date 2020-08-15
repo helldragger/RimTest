@@ -1,0 +1,7 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\1.2\Assemblies\RimTest.xml
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\1.2\Assemblies\RimTest.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\1.2\Assemblies\RimTest.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\obj\Debug\RimTest - Automated Testing Framework.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\obj\Debug\RimTest.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\obj\Debug\RimTest.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RimTest - Automated Testing Framework\obj\Debug\RimTest - Automated Testing Framework.csprojAssemblyReference.cache
