@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Verse;
 using static RimTest.Assertion;
 
 namespace RimTest.tests
@@ -16,8 +15,6 @@ namespace RimTest.tests
     [TestSuite]
     public static class Testing
     {
-
-
 
         private static MethodInfo GetMethodInfo(string methodName)
         {
