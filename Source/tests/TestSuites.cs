@@ -1,5 +1,6 @@
 ﻿using System;
 using static RimTest.Assertion;
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace RimTest.tests
 {
@@ -27,7 +28,6 @@ namespace RimTest.tests
         [Test]
         public static void PassWhenPublic()
         {
-            Type type = ;
             Assert(RimTest.CheckTestSuiteIsPublic(typeof(MockValidTestSuite))).To.Be.True();
         }
 
@@ -75,3 +75,5 @@ namespace RimTest.tests
         }
     }
 }
+
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

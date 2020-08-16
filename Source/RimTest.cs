@@ -121,7 +121,7 @@ namespace RimTest
                 return;
             }
             Log.Message($"  TEST SUITE: {testSuite.FullName}");
-            foreach (MethodInfo method in testSuite.GetMethods().Where((MethodInfo info) => info.TryGetAttribute<TestAttribute>() != null))
+            foreach (MethodInfo method in testSuite.GetMethods().Where((MethodInfo info) => info.TryGetAttribute<Test>() != null))
             {
                 RunTestFunc(method);
             }
