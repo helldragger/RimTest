@@ -4,5 +4,299 @@
         <name>RimTest</name>
     </assembly>
     <members>
+        <member name="T:RimTest.AssertionException">
+            <summary>
+            Used when the condition expected from an assertion is not reached. 
+            </summary>
+            <remarks>Throwing one indicates a test failure.</remarks>
+        </member>
+        <member name="M:RimTest.AssertionException.#ctor">
+            <summary>
+            constructor directly based on the base Exception
+            </summary>
+        </member>
+        <member name="M:RimTest.AssertionException.#ctor(System.String)">
+            <summary>
+            constructor directly based on the base Exception
+            </summary>
+        </member>
+        <member name="M:RimTest.AssertionException.#ctor(System.String,System.Exception)">
+            <summary>
+            constructor directly based on the base Exception
+            </summary>
+        </member>
+        <member name="M:RimTest.AssertionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            constructor directly based on the base Exception
+            </summary>
+        </member>
+        <member name="T:RimTest.Assertion">
+            <summary>
+            Generic assertion grammar object.
+            </summary>
+            <remarks>
+            Usage: Assert(value)[.To|.Do|.Be|.Is|.Not].Comparison([Parameters...])
+            </remarks>
+        </member>
+        <member name="M:RimTest.Assertion.Assert(System.IComparable)">
+            <summary>
+            Entry point for value based assertions
+            </summary>
+            <param name="thing">A comparable value</param>
+            <returns>An AssertValue, specialized in asserting values</returns>
+        </member>
+        <member name="M:RimTest.Assertion.AssertFunc(System.Func{System.Object})">
+            <summary>
+            Entry point for Function based assertions
+            </summary>
+            <param name="thing">A function</param>
+            <returns>An AssertFunc, specialized in asserting Functions</returns>
+        </member>
+        <member name="M:RimTest.Assertion.AssertFunc(System.Action)">
+            <summary>
+            Entry point for Action based assertions
+            </summary>
+            <param name="thing">An Action</param>
+            <returns>An AssertAction, specialized in asserting Actions</returns>
+        </member>
+        <member name="F:RimTest.Assertion.negated">
+            <summary>
+            Negation flag, can be double negated with multiple uses of the .Not grammar, used to negate a check expectation. (i.e. Assert(1).Not.To.Be.EqualTo(2))
+            </summary>
+        </member>
+        <member name="T:RimTest.AssertValue">
+            <summary>
+            Specialized Assertion for Values
+            </summary>
+            <remarks>Allows the EqualTo, LessThan, GreaterThan, BetweenInclusive, BetweenExclusive, TheSame, Null, True and False checks.</remarks>
+        </member>
+        <member name="M:RimTest.AssertValue.#ctor(System.IComparable)">
+            <summary>
+            base constructor
+            </summary>
+            <param name="thing">The value to check</param>
+        </member>
+        <member name="P:RimTest.AssertValue.Not">
+            <summary>
+            Negation grammar link, negates the current assertion.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertValue.To">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertValue.Is">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertValue.Be">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertValue.Do">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="M:RimTest.AssertValue.EqualTo(System.IComparable)">
+            <summary>
+            Check: asserted value EQUALS TO otherThing
+            </summary>
+            <param name="otherThing">check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.LessThan(System.IComparable)">
+            <summary>
+            Check: asserted value LESS THAN otherThing
+            </summary>
+            <param name="otherThing">check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.GreaterThan(System.IComparable)">
+            <summary>
+            Check: asserted value GREATER THAN otherThing
+            </summary>
+            <param name="otherThing">check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.BetweenInclusive(System.IComparable,System.IComparable)">
+            <summary>
+            Check: minThing LESS THAN or EQUAL TO assertd value AND asserted value LESS THAN or EQUAL TO maxThing
+            </summary>
+            <param name="minThing">min check value</param>
+            <param name="maxThing">max check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.BetweenExclusive(System.IComparable,System.IComparable)">
+            <summary>
+            Check: minThing LESS THAN assertd value AND asserted value LESS THAN maxThing
+            </summary>
+            <param name="minThing">min check value</param>
+            <param name="maxThing">max check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.TheSame(System.IComparable)">
+            <summary>
+            Check: asserted value SAME AS otherThing
+            </summary>
+            <param name="otherThing">check value</param>
+        </member>
+        <member name="M:RimTest.AssertValue.Null">
+            <summary>
+            Check: thing IS null
+            </summary>
+        </member>
+        <member name="M:RimTest.AssertValue.True">
+            <summary>
+            Check: thing IS true
+            </summary>
+        </member>
+        <member name="M:RimTest.AssertValue.False">
+            <summary>
+            Check: thing IS false
+            </summary>
+        </member>
+        <member name="T:RimTest.AssertFunc">
+            <summary>
+            Specialized Assertion for Functions
+            </summary>
+            <remarks>Allows the Throw check.</remarks>
+        </member>
+        <member name="M:RimTest.AssertFunc.#ctor(System.Func{System.Object})">
+            <summary>
+            base constructor
+            </summary>
+            <param name="thing">The function to check</param>
+        </member>
+        <member name="P:RimTest.AssertFunc.Not">
+            <summary>
+            Negation grammar link, negates the current assertion.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertFunc.To">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertFunc.Is">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertFunc.Be">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertFunc.Do">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="M:RimTest.AssertFunc.#ctor">
+            <summary>
+            Internal constructor for AssertAction usage
+            </summary>
+            <remarks>Do NOT use manually</remarks>
+        </member>
+        <member name="M:RimTest.AssertFunc.Throw">
+            <summary>
+            Check: executing asserted callable throws an error.
+            </summary>
+        </member>
+        <member name="T:RimTest.AssertAction">
+            <summary>
+            Specialized Assertion for Actions
+            </summary>
+            <remarks>Allows the Throw check.</remarks>
+        </member>
+        <member name="M:RimTest.AssertAction.#ctor(System.Action)">
+            <summary>
+            base constructor
+            </summary>
+            <param name="thing">The function to check</param>
+        </member>
+        <member name="P:RimTest.AssertAction.Not">
+            <summary>
+            Negation grammar link, negates the current assertion.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertAction.To">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertAction.Is">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertAction.Be">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="P:RimTest.AssertAction.Do">
+            <summary>
+            Grammar link, doesn't have any effect.
+            </summary>
+            <remarks>All grammar links can be chained as needed.</remarks>
+        </member>
+        <member name="M:RimTest.AssertAction.Throw">
+            <summary>
+            Check: executing asserted callable throws an error.
+            </summary>
+        </member>
+        <member name="T:RimTest.Test">
+            <summary>
+            Test function meta-attribute, used to register a function as a test to be discovered by RimTest.
+            </summary>
+            <remarks>
+            Only used when the test function is a method of a class with the meta-attribute TestSuite. 
+            Valid Tests have a void signature, are static, public and do not accept parameters, see code example
+            </remarks>
+            <code>
+            [Test]
+            public static void testA(){};
+            </code>
+        </member>
+        <member name="T:RimTest.RimTestMod">
+            <summary>
+            This is the mod entry point run when every assemblies of loaded mods are now loaded and available.
+            </summary>
+            <remarks>We can run test discovery at this point.</remarks>
+        </member>
+        <member name="M:RimTest.RimTestMod.#cctor">
+            <summary>
+            Said entry point
+            </summary>
+        </member>
+        <member name="T:RimTest.TestSuite">
+            <summary>
+            TestSuite meta-attribute, used to register a class as a test suite to be discovered by RimTest.
+            </summary>
+            <remarks>
+            Only used when the class contains valid tests functions decorated with the meta-attribute Test. 
+            Valid Test Suites are static and public, see code example
+            </remarks>
+            <code>
+            [TestSuite]
+            public static class testSuiteA{
+                //tests
+            }
+            </code>
+        </member>
     </members>
 </doc>

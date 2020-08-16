@@ -81,7 +81,7 @@
     <Compile Include="Source\RimTest.cs" />
     <Compile Include="Source\tests\BetweenExclusive.cs" />
     <Compile Include="Source\tests\BetweenInclusive.cs" />
-    <Compile Include="Source\TestAttribute.cs" />
+    <Compile Include="Source\Test.cs" />
     <Compile Include="Source\tests\False.cs" />
     <Compile Include="Source\tests\TestSuites.cs" />
     <Compile Include="Source\tests\True.cs" />
@@ -92,18 +92,15 @@
     <Compile Include="Source\tests\GreaterThan.cs" />
     <Compile Include="Source\tests\LessThan.cs" />
     <Compile Include="Source\tests\Equals.cs" />
-    <Compile Include="Source\ISavedMap.cs" />
-    <Compile Include="Source\ITestRunner.cs" />
     <Compile Include="Source\RimTestMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\TestSuite.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.2\Assemblies\RimTest.xml" />
     <Content Include="About\About.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="1.2\Assemblies\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
