@@ -13,6 +13,6 @@ namespace RimTest
     /// [Test]
     /// public static void testA(){};
     /// </code>
-    internal class Test : Attribute
+    public class Test : Attribute
     { }
 }

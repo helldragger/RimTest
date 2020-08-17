@@ -6,7 +6,7 @@ using Verse;
 
 namespace RimTest
 {
-    class RimTest
+    public class RimTest
     {
         public static string SKIP = "➥";
         public static string FAIL = "✘";
