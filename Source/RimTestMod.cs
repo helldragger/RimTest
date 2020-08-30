@@ -14,9 +14,8 @@ namespace RimTest
         /// </summary>
         public RimTestMod( ModContentPack content ) : base( content )
         {
-            RimTest.RunTests();
-
             Settings = GetSettings<RimTestSettings>();
+            RimTest.RunTests();
         }
 
         public static   RimTestSettings Settings { get; private set; }
