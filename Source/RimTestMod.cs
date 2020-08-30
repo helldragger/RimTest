@@ -43,7 +43,7 @@ namespace RimTest
             var options = new Listing_Standard();
 
             options.Begin( canvas );
-            options.CheckboxLabeled("Run RimTests test suite", ref RunOwnTests, "if enabled, RimTest will run its' own test suite as well as any mod test suites.");
+            options.CheckboxLabeled("Include RimTests' own test suite", ref RunOwnTests, "if enabled, RimTest will run its' own test suite as well as any mod test suites.");
             options.GapLine();
             if ( options.ButtonText( "Run tests now" ) )
             {
