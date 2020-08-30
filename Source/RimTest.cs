@@ -131,6 +131,9 @@ namespace RimTest
         {
             foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
             {
+                // DO NOT 
+                if ( !RimTestMod.Settings.RunOwnTests && asm == Assembly.GetExecutingAssembly() )
+                    continue;
                 bool testFound = false;
                 foreach (Type testSuite in asm.GetTypes().Where((Type type) => type.TryGetAttribute<TestSuite>() != null))
                 {
