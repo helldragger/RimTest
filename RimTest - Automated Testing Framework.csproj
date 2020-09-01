@@ -28,15 +28,23 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>1.2\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\workshop\content\294100\818773962\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib">
+      <HintPath>..\..\..\..\workshop\content\294100\818773962\Assemblies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -75,32 +83,47 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Source\Assertion.cs" />
-    <Compile Include="Source\InvalidTestException.cs" />
-    <Compile Include="Source\InvalidTestSuiteException.cs" />
-    <Compile Include="Source\RimTest.cs" />
-    <Compile Include="Source\tests\BetweenExclusive.cs" />
-    <Compile Include="Source\tests\BetweenInclusive.cs" />
-    <Compile Include="Source\Test.cs" />
-    <Compile Include="Source\tests\False.cs" />
-    <Compile Include="Source\tests\TestSuites.cs" />
-    <Compile Include="Source\tests\True.cs" />
-    <Compile Include="Source\tests\Test.cs" />
-    <Compile Include="Source\tests\Throw.cs" />
-    <Compile Include="Source\tests\Null.cs" />
-    <Compile Include="Source\tests\SameAs.cs" />
-    <Compile Include="Source\tests\GreaterThan.cs" />
-    <Compile Include="Source\tests\LessThan.cs" />
-    <Compile Include="Source\tests\Equals.cs" />
-    <Compile Include="Source\RimTestMod.cs" />
+    <Compile Include="Source\Testing\Assertion.cs" />
+    <Compile Include="Source\Testing\Status\AssemblyStatus.cs" />
+    <Compile Include="Source\Testing\Dialog_Controller.cs" />
+    <Compile Include="Source\Testing\Runner.cs" />
+    <Compile Include="Source\Testing\Controller.cs" />
+    <Compile Include="Source\Testing\Exceptions\InvalidTestException.cs" />
+    <Compile Include="Source\Testing\Exceptions\InvalidTestSuiteException.cs" />
+    <Compile Include="Source\Patches\DebugWindowsOpener_Patch.cs" />
+    <Compile Include="Source\Testing\Explorer.cs" />
+    <Compile Include="Source\Testing\Status\TestStatus.cs" />
+    <Compile Include="Source\Testing\Status\TestSuiteStatus.cs" />
+    <Compile Include="Source\Testing\Validator.cs" />
+    <Compile Include="Source\Testing\Viewer.cs" />
+    <Compile Include="Source\tests\assertion\BetweenExclusive.cs" />
+    <Compile Include="Source\tests\assertion\BetweenInclusive.cs" />
+    <Compile Include="Source\Annotations\Test.cs" />
+    <Compile Include="Source\tests\assertion\False.cs" />
+    <Compile Include="Source\tests\testing\explorer\TestSuiteExplorer.cs" />
+    <Compile Include="Source\tests\testing\validator\TestSuites.cs" />
+    <Compile Include="Source\tests\assertion\True.cs" />
+    <Compile Include="Source\tests\testing\validator\Test.cs" />
+    <Compile Include="Source\tests\assertion\Throw.cs" />
+    <Compile Include="Source\tests\assertion\Null.cs" />
+    <Compile Include="Source\tests\assertion\SameAs.cs" />
+    <Compile Include="Source\tests\assertion\GreaterThan.cs" />
+    <Compile Include="Source\tests\assertion\LessThan.cs" />
+    <Compile Include="Source\tests\assertion\Equals.cs" />
+    <Compile Include="Source\Core\RimTestMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\TestSuite.cs" />
+    <Compile Include="Source\Annotations\TestSuite.cs" />
+    <Compile Include="Source\Util\Tally.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.2\Assemblies\RimTest.xml" />
     <Content Include="About\About.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Source\Testing\NewFolder1\" />
+    <Folder Include="Source\tests\testing\runner\" />
+    <Folder Include="Source\tests\testing\viewer\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

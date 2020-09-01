@@ -117,51 +117,27 @@ namespace RimTest
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertValue To
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertValue To => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertValue Is
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertValue Is => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertValue Be
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertValue Be => this;
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertValue Do
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertValue Do => this;
         /// <summary>
         /// Check: asserted value EQUALS TO otherThing
         /// </summary>
@@ -289,63 +265,39 @@ namespace RimTest
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertFunc To
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertFunc To => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertFunc Is
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertFunc Is => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertFunc Be
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertFunc Be => this;
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public AssertFunc Do
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public AssertFunc Do => this;
         /// <summary>
         /// Internal constructor for AssertAction usage
         /// </summary>
         /// <remarks>Do NOT use manually</remarks>
         protected AssertFunc() : base() { }
-        
+
         /// <summary>
         /// Check: executing asserted callable throws an error.
         /// </summary>
         public void Throw()
         {
-            if (func == null) throw new NullReferenceException("AssertFunc function cannot be null"); 
+            if (func == null) throw new NullReferenceException("AssertFunc function cannot be null");
             try
             {
                 func();
@@ -394,51 +346,27 @@ namespace RimTest
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public new AssertAction To
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public new AssertAction To => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public new AssertAction Is
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public new AssertAction Is => this;
 
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public new AssertAction Be
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public new AssertAction Be => this;
 
         /// <summary>
         /// Grammar link, doesn't have any effect.
         /// </summary>
         /// <remarks>All grammar links can be chained as needed.</remarks>
-        public new AssertAction Do
-        {
-            get
-            {
-                return this;
-            }
-        }
+        public new AssertAction Do => this;
 
         /// <summary>
         /// Check: executing asserted callable throws an error.

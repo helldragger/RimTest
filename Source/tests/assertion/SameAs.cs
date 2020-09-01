@@ -2,22 +2,25 @@
 using static RimTest.Assertion;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace RimTest.tests
+namespace RimTest.tests.assertion
 {
     [TestSuite]
-    public static class Null
+    public static class SameAs
     {
         [Test]
-        public static void PassWhenNull()
+        public static void PassWhenSame()
         {
-            Assert(null).To.Be.Null();
+            IComparable mock = "a";
+            Assert(mock).To.Be.TheSame(mock);
         }
         [Test]
-        public static void ThrowWhenNotNull()
+        public static void ThrowWhenNotSame()
         {
+            IComparable mock = "a";
+            IComparable mock2 = "b";
             try
             {
-                Assert(1).To.Be.Null();
+                Assert(mock).To.Be.TheSame(mock2);
             }
             catch (Exception)
             {

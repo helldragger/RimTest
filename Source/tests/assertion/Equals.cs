@@ -2,22 +2,22 @@
 using static RimTest.Assertion;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace RimTest.tests
+namespace RimTest.tests.assertion
 {
     [TestSuite]
-    public static class True
+    public static class Equals
     {
         [Test]
-        public static void PassWhenTrue()
+        public static void PassWhenEqual()
         {
-            Assert(true).To.Be.True();
+            Assert(1).To.Be.EqualTo(1);
         }
         [Test]
-        public static void ThrowWhenNotTrue()
+        public static void ThrowWhenNotEqual()
         {
             try
             {
-                Assert(false).To.Be.True();
+                Assert(1).To.Be.EqualTo(2);
             }
             catch (Exception)
             {

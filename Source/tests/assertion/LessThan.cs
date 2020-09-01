@@ -2,22 +2,22 @@
 using static RimTest.Assertion;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace RimTest.tests
+namespace RimTest.tests.assertion
 {
     [TestSuite]
-    public static class Throw
+    public static class LessThan
     {
         [Test]
-        public static void PassWhenThrow()
+        public static void PassWhenLess()
         {
-            AssertFunc(() => throw new Exception()).To.Throw();
+            Assert(1).To.Be.LessThan(2);
         }
         [Test]
-        public static void ThrowWhenNotThrow()
+        public static void ThrowWhenNotLess()
         {
             try
             {
-                AssertFunc(() => 1).To.Throw();
+                Assert(1).To.Be.LessThan(1);
             }
             catch (Exception)
             {

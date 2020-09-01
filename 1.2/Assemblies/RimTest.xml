@@ -259,6 +259,305 @@
             Check: executing asserted callable throws an error.
             </summary>
         </member>
+        <member name="T:RimTest.Testing.AssemblyStatus">
+            <summary>
+            Registered Assembly current test execution status.
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.AssemblyStatus.ERROR">
+            <summary>
+            Any test suite fails
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.AssemblyStatus.WARNING">
+            <summary>
+            Any test suite is skipped or have warnings
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.AssemblyStatus.UNKNOWN">
+            <summary>
+            Any test suite is not run
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.AssemblyStatus.PASS">
+            <summary>
+            All test suites are successful
+            </summary>
+        </member>
+        <member name="T:RimTest.Testing.AssemblyStatusExtension">
+            <summary>
+            Utils for AssemblyStatus
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyStatusExtension.StatusSymbol(RimTest.Testing.AssemblyStatus)">
+            <summary>
+            Value to string symbol converter
+            </summary>
+            <param name="status"></param>
+            <returns>user friendly string representation</returns>
+        </member>
+        <member name="T:RimTest.Testing.Runner">
+            <summary>
+            Execute registered tests and update the status of registered tests, test suites and tested assemblies
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.Runner.RunTest(System.Reflection.MethodInfo)">
+            <summary>
+            Check a test validity and run it if possible. 
+            Update the status to TestStatus.SKIP if invalid, TestStatus.PASS if succesfull, TestStatus.ERROR if failed. 
+            Registers any detected error to the test.
+            </summary>
+            <param name="test"></param>
+            <seealso cref="T:RimTest.Testing.TestStatus"/>
+        </member>
+        <member name="M:RimTest.Testing.Runner.RunTestSuite(System.Type)">
+            <summary>
+            Check a test suite validity and run its tests if possible. 
+            Update the status to TestSuiteStatus.SKIP if invalid, then TestSuiteStatus.ERROR if any test fails, then TestSuiteStatus.WARNING if any test is skipped, then TestSuiteStatus.UNKNOWN if any test is not run, then TestSuiteStatus.PASS if succesfull. 
+            Registers any detected error to the test suite.
+            </summary>
+            <param name="testSuite"></param>
+            <seealso cref="T:RimTest.Testing.TestSuiteStatus"/>
+        </member>
+        <member name="M:RimTest.Testing.Runner.RunAssembly(System.Reflection.Assembly)">
+            <summary>
+            Run a assembly test suites. 
+            Update the status to AssemblyStatus.ERROR if any test suite fails, then AssemblyStatus.WARNING if any test suite is skipped or have warnings, then AssemblyStatus.UNKNOWN if any test suite is not run, then AssemblyStatus.PASS if succesfull. 
+            Registers any detected error to the test suite.
+            </summary>
+            <param name="asm"></param>
+            <seealso cref="T:RimTest.Testing.AssemblyStatus"/>
+        </member>
+        <member name="M:RimTest.Testing.Runner.RunAllRegisteredTests">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:RimTest.Testing.AssemblyExplorer">
+            <summary>
+            Stores and manages Assembly level data, aka known statuses and exceptions.
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyExplorer.SetAssemblyStatus(System.Reflection.Assembly,RimTest.Testing.AssemblyStatus)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyExplorer.SetAssemblyError(System.Reflection.Assembly,System.Exception)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <param name="error"></param>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyExplorer.GetAssemblyStatus(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns>The current registered AssemblyStatus else AssemblyStatus.UNKNOWN</returns>
+            <seealso cref="T:RimTest.Testing.AssemblyStatus"/>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyExplorer.GetAssemblyError(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns>The current registered Exception else null if none registered</returns>
+        </member>
+        <member name="T:RimTest.Testing.Assembly2TestSuiteLink">
+            <summary>
+            Stores and manage the links between registered assemblies and their registered test suites
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.Assembly2TestSuiteLink.RegisterTestSuite2Asm(System.Type,System.Reflection.Assembly)">
+            <summary>
+            Can register multiple unique test suites to the same assembly. Will not store duplicates.
+            </summary>
+            <param name="testSuite"></param>
+            <param name="asm"></param>
+        </member>
+        <member name="M:RimTest.Testing.Assembly2TestSuiteLink.GetAssemblies">
+            <summary>
+            </summary>
+            <returns>A list of all known assemblies</returns>
+        </member>
+        <member name="M:RimTest.Testing.Assembly2TestSuiteLink.GetTestSuites(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns>A set of registered tests suites for this assembly. Returns an empty set if the assembly is not registered.</returns>
+        </member>
+        <member name="T:RimTest.Testing.TestSuiteExplorer">
+            <summary>
+            Stores and manages Test Suite level data, aka known statuses and exceptions.
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteExplorer.SetTestSuiteStatus(System.Type,RimTest.Testing.TestSuiteStatus)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteExplorer.SetTestSuiteError(System.Type,System.Exception)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <param name="error"></param>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteExplorer.GetTestSuiteStatus(System.Type)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <returns>current registered TestSuiteStatus else TestSuiteStatus.UNKNOWN</returns>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteExplorer.GetTestSuiteError(System.Type)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <returns>current registered Exception else null if none registered</returns>
+        </member>
+        <member name="T:RimTest.Testing.TestSuite2TestLink">
+            <summary>
+            Stores and manage the links between registered test suites and their registered tests
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestSuite2TestLink.RegisterTest2TestSuite(System.Reflection.MethodInfo,System.Type)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <param name="testSuite"></param>
+        </member>
+        <member name="M:RimTest.Testing.TestSuite2TestLink.GetTests(System.Type)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <returns>A set of registered tests for this test suite. Returns an empty set if the test suite is not registered.</returns>
+        </member>
+        <member name="T:RimTest.Testing.TestExplorer">
+            <summary>
+            Stores and manages Test level data, aka known statuses and exceptions.
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestExplorer.SetTestStatus(System.Reflection.MethodInfo,RimTest.Testing.TestStatus)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.TestExplorer.SetTestError(System.Reflection.MethodInfo,System.Exception)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <param name="error"></param>
+        </member>
+        <member name="M:RimTest.Testing.TestExplorer.GetTestStatus(System.Reflection.MethodInfo)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <returns>current registered TestStatus else TestStatus.UNKNOWN</returns>
+        </member>
+        <member name="M:RimTest.Testing.TestExplorer.GetTestError(System.Reflection.MethodInfo)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <returns>current registered Exception else null if none registered</returns>
+        </member>
+        <member name="T:RimTest.Testing.Explorer">
+            <summary>
+            Explores and registers every tested assembly, test suites and tests currently loaded.
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.Explorer.ExploreAndRegisterAssemblies">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.Explorer.ExploreAndRegisterTestSuites(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm">Entry point</param>
+        </member>
+        <member name="M:RimTest.Testing.Explorer.ExploreAndRegisterTests(System.Type)">
+            <summary>
+            </summary>
+            <param name="testSuite">Entry point</param>
+        </member>
+        <member name="T:RimTest.Testing.TestStatus">
+            <summary>
+            Registered Test current execution status.
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestStatus.SKIP">
+            <summary>
+            invalid test
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestStatus.UNKNOWN">
+            <summary>
+            not run yet
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestStatus.ERROR">
+            <summary>
+            failed
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestStatus.PASS">
+            <summary>
+            passed
+            </summary>
+        </member>
+        <member name="T:RimTest.Testing.TestStatusExtension">
+            <summary>
+            Utils for TestStatus
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestStatusExtension.StatusSymbol(RimTest.Testing.TestStatus)">
+            <summary>
+            Value to string symbol converter
+            </summary>
+            <param name="status"></param>
+            <returns>user friendly string representation</returns>
+        </member>
+        <member name="T:RimTest.Testing.TestSuiteStatus">
+            <summary>
+            Registered Test Suite current test execution status.
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestSuiteStatus.SKIP">
+            <summary>
+            Invalid Test Suite
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestSuiteStatus.ERROR">
+            <summary>
+            Any test fails
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestSuiteStatus.WARNING">
+            <summary>
+            Any test skipped
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestSuiteStatus.UNKNOWN">
+            <summary>
+            Any test is not run
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.TestSuiteStatus.PASS">
+            <summary>
+            All tests are successful
+            </summary>
+        </member>
+        <member name="T:RimTest.Testing.TestSuiteStatusExtension">
+            <summary>
+            Utils for TestStatus
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteStatusExtension.StatusSymbol(RimTest.Testing.TestSuiteStatus)">
+            <summary>
+            Value to string symbol converter
+            </summary>
+            <param name="status"></param>
+            <returns>user friendly string representation</returns>
+        </member>
         <member name="T:RimTest.Test">
             <summary>
             Test function meta-attribute, used to register a function as a test to be discovered by RimTest.
@@ -297,6 +596,25 @@
                 //tests
             }
             </code>
+        </member>
+        <member name="T:RimTest.Util.Tally`1">
+            <summary>
+            Dictionnary&lt;T, int&gt; auto defaulting to 0. Allows simple tallying syntax such as tally[element]++  
+            </summary>
+            <example>
+            <![CDATA[
+            // without Tally
+            Dictionary<T, int> old = new Dictionary<T, int>();
+            foreach(var k in Enum.GetValue(typeof(T))){ old[k] = 0; }
+            // with Tally
+            Tally<T> now = new Tally<T>();
+            ]]>
+            </example>
+            <typeparam name="T">Enumeration</typeparam>
+        </member>
+        <member name="M:RimTest.Util.Tally`1.#ctor">
+            <summary>
+            </summary>
         </member>
     </members>
 </doc>

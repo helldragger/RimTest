@@ -1,5 +1,6 @@
 ﻿using System;
 using static RimTest.Assertion;
+using static RimTest.Testing.Validator;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace RimTest.tests
@@ -22,34 +23,34 @@ namespace RimTest.tests
         [Test]
         public static void PassWhenValid()
         {
-            AssertFunc( () => RimTest.IsValidTestSuite(typeof(MockValidTestSuite)) ).Not.To.Throw();
+            AssertFunc(() => IsValidTestSuite(typeof(MockValidTestSuite))).Not.To.Throw();
         }
 
         [Test]
         public static void PassWhenPublic()
         {
-            Assert(RimTest.CheckTestSuiteIsPublic(typeof(MockValidTestSuite))).To.Be.True();
+            Assert(CheckTestSuiteIsPublic(typeof(MockValidTestSuite))).To.Be.True();
         }
 
         [Test]
         public static void ThrowWhenNonPublic()
         {
             Type type = typeof(MockNonPublicTestSuite);
-            Assert(RimTest.CheckTestSuiteIsPublic(type)).To.Be.False();
-            AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
+            Assert(CheckTestSuiteIsPublic(type)).To.Be.False();
+            AssertFunc(() => IsValidTestSuite(type)).To.Throw();
         }
 
         [Test]
         public static void IsValidTestSuiteThrowWhenNull()
         {
-            AssertFunc(() => RimTest.IsValidTestSuite(null)).To.Throw();
+            AssertFunc(() => IsValidTestSuite(null)).To.Throw();
         }
 
         [Test]
         public static void ChecksAreFalseWhenNull()
         {
-            Assert(RimTest.CheckTestSuiteIsPublic(null)).To.Be.False();
-            Assert(RimTest.CheckTestSuiteIsStatic(null)).To.Be.False();
+            Assert(CheckTestSuiteIsPublic(null)).To.Be.False();
+            Assert(CheckTestSuiteIsStatic(null)).To.Be.False();
         }
 
 
@@ -57,21 +58,21 @@ namespace RimTest.tests
         [Test]
         public static void PassWhenStatic()
         {
-            Assert(RimTest.CheckTestSuiteIsStatic(typeof(MockValidTestSuite))).To.Be.True();
+            Assert(CheckTestSuiteIsStatic(typeof(MockValidTestSuite))).To.Be.True();
         }
 
         [Test]
         public static void ThrowWhenNonStatic()
         {
             Type type = typeof(MockNonStaticTestSuite);
-            Assert(RimTest.CheckTestSuiteIsStatic(type)).To.Be.False();
-            AssertFunc(() => RimTest.IsValidTestSuite(type)).To.Throw();
+            Assert(CheckTestSuiteIsStatic(type)).To.Be.False();
+            AssertFunc(() => IsValidTestSuite(type)).To.Throw();
         }
         [Test]
         public static void ThrowWhenInvalid()
         {
-            AssertFunc(() => RimTest.IsValidTestSuite(typeof(MockNonStaticTestSuite))).To.Throw();
-            AssertFunc(() => RimTest.IsValidTestSuite(typeof(MockNonPublicTestSuite))).To.Throw();
+            AssertFunc(() => IsValidTestSuite(typeof(MockNonStaticTestSuite))).To.Throw();
+            AssertFunc(() => IsValidTestSuite(typeof(MockNonPublicTestSuite))).To.Throw();
         }
     }
 }

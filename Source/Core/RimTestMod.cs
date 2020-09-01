@@ -1,5 +1,5 @@
-﻿using Verse;
-
+﻿using RimTest.Testing;
+using Verse;
 namespace RimTest
 {
     /// <summary>
@@ -14,7 +14,9 @@ namespace RimTest
         /// </summary>
         static RimTestMod() //our constructor
         {
-            RimTest.RunTests();
+            Explorer.ExploreAndRegisterAssemblies();
+            Runner.RunAllRegisteredTests();
+            Viewer.LogTestsResults();
         }
     }
 }
