@@ -577,7 +577,7 @@
             </summary>
             <remarks>We can run test discovery at this point.</remarks>
         </member>
-        <member name="M:RimTest.RimTestMod.#cctor">
+        <member name="M:RimTest.RimTestMod.#ctor(Verse.ModContentPack)">
             <summary>
             Said entry point
             </summary>

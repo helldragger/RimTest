@@ -153,6 +153,9 @@ namespace RimTest.Testing
         {
             List<Assembly> asms = GetAssemblies();
             asms.Sort();
+            if (!RimTestMod.Settings.RunOwnTests)
+                asms.Remove(Assembly.GetExecutingAssembly());
+
             Info("==TESTING START");
             Info("__SUMMARY");
             LogSummary(asms);

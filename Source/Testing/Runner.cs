@@ -1,5 +1,6 @@
 ﻿using RimTest.Util;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using static RimTest.Testing.Assembly2TestSuiteLink;
@@ -36,8 +37,12 @@ namespace RimTest.Testing
             }
             try
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
                 // tests are static (null reference object) and do NOT accept arguments (null parameters array)
                 test.Invoke(null, null);
+                stopwatch.Stop();
+                TimeElapsedExplorer.SetTestTimeElapsed(test, stopwatch.Elapsed.TotalMilliseconds);
                 SetTestStatus(test, TestStatus.PASS);
                 SetTestError(test, null);
 
@@ -146,6 +151,8 @@ namespace RimTest.Testing
         {
             foreach (Assembly asm in GetAssemblies())
             {
+                if (!RimTestMod.Settings.RunOwnTests && asm == Assembly.GetExecutingAssembly())
+                    continue;
                 RunAssembly(asm);
             }
         }
