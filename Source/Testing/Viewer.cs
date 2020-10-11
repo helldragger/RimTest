@@ -152,7 +152,7 @@ namespace RimTest.Testing
         public static void LogTestsResults()
         {
             List<Assembly> asms = GetAssemblies();
-            asms.Sort();
+            asms.SortBy(asm => asm.FullName);
             if (!RimTestMod.Settings.RunOwnTests)
                 asms.Remove(Assembly.GetExecutingAssembly());
 
