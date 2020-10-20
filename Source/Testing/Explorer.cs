@@ -8,13 +8,16 @@ using static RimTest.Testing.Validator;
 
 namespace RimTest.Testing
 {
-
+    /// <summary>
+    /// Time profiling system
+    /// </summary>
     public static class TimeElapsedExplorer
     {
         static readonly IDictionary<Assembly, double> asm2TimeElapsed = new Dictionary<Assembly, double>();
         static readonly IDictionary<Type, double> testSuite2TimeElapsed = new Dictionary<Type, double>();
         static readonly IDictionary<MethodInfo, double> test2TimeElapsed = new Dictionary<MethodInfo, double>(); 
-        
+        /// <summary>
+        /// </summary>
         public static void UpdateAllAssembliesTimeElapsed()
         {
             foreach (Assembly asm in AssemblyExplorer.GetAllKnownAssemblies())
@@ -22,12 +25,17 @@ namespace RimTest.Testing
                 UpdateAssemblyTimeElapsed(asm);
             }
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
+        /// <param name="time"></param>
         public static void SetAssemblyTimeElapsed(Assembly asm, double time)
         {
             asm2TimeElapsed[asm] = time;
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
         public static void UpdateAssemblyTimeElapsed(Assembly asm)
         {
             double totaltime = 0;
@@ -39,18 +47,27 @@ namespace RimTest.Testing
             }
             SetAssemblyTimeElapsed(asm, totaltime);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
+        /// <returns></returns>
         public static double GetAssemblyTimeElapsed(Assembly asm)
         {
             if (asm2TimeElapsed.ContainsKey(asm)) return asm2TimeElapsed[asm];
             else UpdateAssemblyTimeElapsed(asm);
             return asm2TimeElapsed[asm];
         }
+        /// <summary>
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <param name="time"></param>
         public static void SetTestSuiteTimeElapsed(Type ts, double time)
         {
             testSuite2TimeElapsed[ts] = time;
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="ts"></param>
         public static void UpdateTestSuiteTimeElapsed(Type ts)
         {
             double totaltime = 0;
@@ -61,7 +78,10 @@ namespace RimTest.Testing
             }
             SetTestSuiteTimeElapsed(ts, totaltime);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <returns></returns>
         public static double GetTestSuiteTimeElapsed(Type ts)
         {
 
@@ -69,12 +89,18 @@ namespace RimTest.Testing
             else UpdateTestSuiteTimeElapsed(ts);
             return testSuite2TimeElapsed[ts];
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="test"></param>
+        /// <param name="time"></param>
         public static void SetTestTimeElapsed(MethodInfo test, double time)
         {
             test2TimeElapsed[test] = time;
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="test"></param>
+        /// <returns></returns>
         public static double GetTestTimeElapsed(MethodInfo test)
         {
             if (test2TimeElapsed.ContainsKey(test)) return test2TimeElapsed[test];
@@ -82,31 +108,78 @@ namespace RimTest.Testing
         }
     }
 
+    /// <summary>
+    /// Keeps track of filtered tests for easy test finding
+    /// </summary>
     public static class FilteredExplorer
     {
         static Regex filter = new Regex(@"");
-
+        /// <summary>
+        /// Are failed state asm shown?
+        /// </summary>
         static public bool failEnabledAsm = true;
+        /// <summary>
+        /// Are warning state asm shown?
+        /// </summary>
         static public bool warningEnabledAsm = true;
+        /// <summary>
+        /// Are unknown state asm shown?
+        /// </summary>
         static public bool unknownEnabledAsm = true;
+        /// <summary>
+        /// Are passed state asm shown?
+        /// </summary>
         static public bool passEnabledAsm = true;
 
+        /// <summary>
+        /// Are failed state TS shown?
+        /// </summary>
         static public bool failEnabledTS = true;
+        /// <summary>
+        /// Are warning state TS shown?
+        /// </summary>
         static public bool warningEnabledTS = true;
+        /// <summary>
+        /// Are unknown state TS shown?
+        /// </summary>
         static public bool unknownEnabledTS = true;
+        /// <summary>
+        /// Are skipped state TS shown?
+        /// </summary>
         static public bool skipEnabledTS = true;
+        /// <summary>
+        /// Are passed state TS shown?
+        /// </summary>
         static public bool passEnabledTS = true;
 
+        /// <summary>
+        /// Are failed state T shown?
+        /// </summary>
         static public bool failEnabledT = true;
+        /// <summary>
+        /// Are unknown state T shown?
+        /// </summary>
         static public bool unknownEnabledT = true;
+        /// <summary>
+        /// Are skipped state T shown?
+        /// </summary>
         static public bool skipEnabledT = true;
+        /// <summary>
+        /// Are passed state T shown?
+        /// </summary>
         static public bool passEnabledT = true;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="filter"></param>
         public static void UpdateFilter(Regex filter)
         {
             FilteredExplorer.filter = filter;
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
+        /// <returns></returns>
         public static bool DoesAssemblyStatusMatchesFilter(Assembly asm)
         {
             return (AssemblyExplorer.GetAssemblyStatus(asm)) switch
@@ -118,7 +191,10 @@ namespace RimTest.Testing
                 _ => false,
             };
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <returns></returns>
         public static bool DoesTestSuiteStatusMatchesFilter(Type ts)
         {
             return (TestSuiteExplorer.GetTestSuiteStatus(ts)) switch
@@ -131,7 +207,10 @@ namespace RimTest.Testing
                 _ => false,
             };
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static bool DoesTestStatusMatchesFilter(MethodInfo t)
         {
             return (TestExplorer.GetTestStatus(t)) switch
@@ -143,22 +222,33 @@ namespace RimTest.Testing
                 _ => false,
             };
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
+        /// <returns></returns>
         public static bool DoesAssemblyMatchesFilter(Assembly asm)
         {
             return (filter.IsMatch(asm.GetName().Name) || Assembly2TestSuiteLink.GetTestSuites(asm).Any((Type ts) => DoesTestSuiteMatchesFilter(ts))) && DoesAssemblyStatusMatchesFilter(asm);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="testSuite"></param>
+        /// <returns></returns>
         public static bool DoesTestSuiteMatchesFilter(Type testSuite)
         {
             return (filter.IsMatch(testSuite.Name) || TestSuite2TestLink.GetTests(testSuite).Any((MethodInfo t) => DoesTestMatchesFilter(t))) && DoesTestSuiteStatusMatchesFilter(testSuite);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="test"></param>
+        /// <returns></returns>
         public static bool DoesTestMatchesFilter(MethodInfo test)
         {
             return filter.IsMatch(test.Name) && DoesTestStatusMatchesFilter(test);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Assembly> GetFilteredAssemblies()
         {
             return AssemblyExplorer
@@ -166,7 +256,9 @@ namespace RimTest.Testing
                 .Where((Assembly asm) => DoesAssemblyMatchesFilter(asm))
                 .ToList();
         }
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Type> GetFilteredTestSuites()
         {
             return TestSuiteExplorer
@@ -174,7 +266,10 @@ namespace RimTest.Testing
                 .Where((Type ts) => DoesTestSuiteMatchesFilter(ts))
                 .ToList();
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="asm"></param>
+        /// <returns></returns>
         public static IEnumerable<Type> GetFilteredTestSuites(Assembly asm)
         {
             return Assembly2TestSuiteLink
@@ -182,7 +277,9 @@ namespace RimTest.Testing
                 .Where((Type ts) => DoesTestSuiteMatchesFilter(ts))
                 .ToList();
         }
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<MethodInfo> GetFilteredTests()
         {
             return TestExplorer
@@ -190,7 +287,10 @@ namespace RimTest.Testing
                 .Where((MethodInfo t) => DoesTestMatchesFilter(t))
                 .ToList();
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <returns></returns>
         public static IEnumerable<MethodInfo> GetFilteredTests(Type ts)
         {
             return TestSuite2TestLink
@@ -199,14 +299,17 @@ namespace RimTest.Testing
                 .ToList();
         }
     }
-
+    /// <summary>
+    /// Keeps track of test statuses
+    /// </summary>
     public static class StatusExplorer
     {
 
         static readonly IDictionary<AssemblyStatus, int> asmStatus2count = new Dictionary<AssemblyStatus, int>();
         static readonly IDictionary<TestSuiteStatus, int> tsStatus2count = new Dictionary<TestSuiteStatus, int>();
         static readonly IDictionary<TestStatus, int> tStatus2count = new Dictionary<TestStatus, int>();
-
+        /// <summary>
+        /// </summary>
         public static void UpdateAllStatusCounts()
         {
             foreach (AssemblyStatus status in Enum.GetValues(typeof(AssemblyStatus)))
@@ -222,7 +325,9 @@ namespace RimTest.Testing
                 UpdateTestStatusCount(status);
             }
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
         public static void UpdateAssemblyStatusCount(AssemblyStatus status)
         {
             int value = FilteredExplorer
@@ -232,12 +337,18 @@ namespace RimTest.Testing
             if (asmStatus2count.ContainsKey(status)) asmStatus2count[status] = value;
             else asmStatus2count.Add(status, value);
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public static int GetAssemblyStatusCount(AssemblyStatus status)
         {
             if (!asmStatus2count.ContainsKey(status)) UpdateAssemblyStatusCount(status);
             return asmStatus2count[status];
         }
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
         public static void UpdateTestSuiteStatusCount(TestSuiteStatus status)
         {
             int value = FilteredExplorer
@@ -248,11 +359,17 @@ namespace RimTest.Testing
             else tsStatus2count.Add(status, value);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
         public static int GetTestSuiteStatusCount(TestSuiteStatus status)
         {
             if (!tsStatus2count.ContainsKey(status)) UpdateTestSuiteStatusCount(status);
             return tsStatus2count[status];
         }
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
         public static void UpdateTestStatusCount(TestStatus status)
         {
             int value = FilteredExplorer
@@ -263,6 +380,9 @@ namespace RimTest.Testing
             else tStatus2count.Add(status, value);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="status"></param>
         public static int GetTestStatusCount(TestStatus status)
         {
             if (!tStatus2count.ContainsKey(status)) UpdateTestStatusCount(status);
@@ -278,7 +398,9 @@ namespace RimTest.Testing
     {
         static readonly IDictionary<Assembly, AssemblyStatus> asm2Status = new Dictionary<Assembly, AssemblyStatus>();
         static readonly IDictionary<Assembly, Exception> asm2Error = new Dictionary<Assembly, Exception>();
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static ICollection<Assembly> GetAllKnownAssemblies()
         {
             return asm2Status.Keys;
@@ -371,7 +493,9 @@ namespace RimTest.Testing
         static readonly IDictionary<Type, TestSuiteStatus> testSuite2Status = new Dictionary<Type, TestSuiteStatus>();
         static readonly IDictionary<Type, Exception> testSuite2Error = new Dictionary<Type, Exception>();
 
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static ICollection<Type> GetAllKnownTestSuites()
         {
             return testSuite2Status.Keys;
@@ -491,7 +615,9 @@ namespace RimTest.Testing
             return null;
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public static ICollection<MethodInfo> GetAllKnownTests()
         {
             return test2Status.Keys;

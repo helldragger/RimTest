@@ -27,13 +27,22 @@ namespace RimTest
                 Viewer.LogTestsResults();
             }
         }
+        ///<summary>
+        /// Settings getter
+        ///</summary>
         public static RimTestSettings Settings { get; private set; }
+        ///<summary>
+        /// Settings UI drawing logic
+        ///</summary>
         public override void DoSettingsWindowContents(Rect canvas)
         {
             base.DoSettingsWindowContents(canvas);
             Settings.DoWindowContents(canvas);
         }
 
+        ///<summary>
+        /// Mod header in the mod config UI
+        ///</summary>
         public override string SettingsCategory() => "RimTest";
     }
 

@@ -7,10 +7,8 @@ using System.Reflection;
 using System.Text;
 using static RimTest.Testing.AssemblyExplorer;
 using static RimTest.Testing.AssemblyStatusExtension;
-using static RimTest.Testing.Assembly2TestSuiteLink;
 using static RimTest.Testing.TestSuiteExplorer;
 using static RimTest.Testing.TestSuiteStatusExtension;
-using static RimTest.Testing.TestSuite2TestLink;
 using static RimTest.Testing.TestExplorer;
 using static RimTest.Testing.TestStatusExtension;
 using System.Text.RegularExpressions;
@@ -18,11 +16,19 @@ using Text = Verse.Text;
 
 namespace RimTest.Core
 {
+    /// <summary>
+    /// Main RimTest UI
+    /// </summary>
     public class RimTestSettings : ModSettings
     {
+        /// <summary>
+        /// Decides if the mod run it's own tests or not
+        /// </summary>
         public bool RunOwnTests = false;
+        /// <summary>
+        /// Decides if the mod runs all the available non filtered tests at launch or not
+        /// </summary>
         public bool RunAtStartup = true;
-        private int tabIndex = 0;
         private IDictionary<Assembly, bool> assemblyVisibility = new Dictionary<Assembly, bool>();
         private IDictionary<Type, bool> testSuiteVisibility = new Dictionary<Type, bool>();
 
@@ -55,9 +61,12 @@ namespace RimTest.Core
         private static Color COLOR_PASS = new Color(0.706f, 0.933f, 0.251f);
         private static Color COLOR_UNKNOWN = new Color(0.184f, 0.533f, 0.631f);
 
-        public string searchRegex = @"";
+        private string searchRegex = @"";
 
         private static Vector2 ScrollPosition = Vector2.zero;
+       /// <summary>
+       /// Data exposition for serialization and keeping settings saved between game runs
+       /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();
@@ -66,7 +75,10 @@ namespace RimTest.Core
 
         }
 
-
+        /// <summary>
+        /// Draws the RimTest UI main canvas
+        /// </summary>
+        /// <param name="canvas"></param>
         public void DoWindowContents(Rect canvas)
         {
             StatusExplorer.UpdateAllStatusCounts();
@@ -111,9 +123,11 @@ namespace RimTest.Core
             //Widgets.CustomButtonText(ref labelRect, "test assembly", Color.black, Color.white, Color.red);
 
             // RimTest -- displayA  displayB ...
-            // Assemblies: |collapse| |expand| filter regex: |_________________
-            // TestSuites: |collapse| |expand| view: [x]✓ [v]! [v]✘ [x]➥ [v]?
-            // |run all| |export logs|  
+            //                                 Status: ✘ERROR  !WARNING  ➥SKIPPED  ?NOT RAN  ✓PASS
+            // Assemblies: |collapse| |expand |         [x] 2    [v] 1                [v] 1    [v] 1
+            // TestSuites: |collapse| |expand |         [x] 3    [v] 1    [x] 1       [v] 12   [v] 4
+            // Tests:      |run all | |log all|         [x] 10            [x] 4       [v] 23   [v] 16
+            // filter regex: |_________________
             // V THIS PART V
             // |run| |time|   ||v [v] Assembly 1|       | 
             // |run| |time|   ||^ [x] Assembly 2|       | error msg
@@ -122,6 +136,18 @@ namespace RimTest.Core
             // |run| |time|     ||v [x] Test 2.2.1|     | error msg
             // |run| |time|     ||^ [v] Test 2.2.1|     | 
             // ...
+
+            //TODO Status filter , utiliser colonnes + sliders
+            //-----          [Skipped]  |  [Passed]
+            //[Assemblies]   [x] [100]  |
+            //[Test Suites][x][010] |
+            //[Tests][x][000] |
+
+            // TODO Statuses symbols
+            // ?? pas ouf
+            // !! pas ouf
+
+            // TODO control rows size doivent être aussi gros que les checkbox.
         }
 
         private void DrawControls(Listing_Standard bar)

@@ -4,6 +4,32 @@
         <name>RimTest</name>
     </assembly>
     <members>
+        <member name="T:RimTest.Core.RimTestSettings">
+            <summary>
+            Main RimTest UI
+            </summary>
+        </member>
+        <member name="F:RimTest.Core.RimTestSettings.RunOwnTests">
+            <summary>
+            Decides if the mod run it's own tests or not
+            </summary>
+        </member>
+        <member name="F:RimTest.Core.RimTestSettings.RunAtStartup">
+            <summary>
+            Decides if the mod runs all the available non filtered tests at launch or not
+            </summary>
+        </member>
+        <member name="M:RimTest.Core.RimTestSettings.ExposeData">
+            <summary>
+            Data exposition for serialization and keeping settings saved between game runs
+            </summary>
+        </member>
+        <member name="M:RimTest.Core.RimTestSettings.DoWindowContents(UnityEngine.Rect)">
+            <summary>
+            Draws the RimTest UI main canvas
+            </summary>
+            <param name="canvas"></param>
+        </member>
         <member name="T:RimTest.AssertionException">
             <summary>
             Used when the condition expected from an assertion is not reached. 
@@ -332,10 +358,248 @@
             <summary>
             </summary>
         </member>
+        <member name="T:RimTest.Testing.TimeElapsedExplorer">
+            <summary>
+            Time profiling system
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.UpdateAllAssembliesTimeElapsed">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.SetAssemblyTimeElapsed(System.Reflection.Assembly,System.Double)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <param name="time"></param>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.UpdateAssemblyTimeElapsed(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.GetAssemblyTimeElapsed(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.SetTestSuiteTimeElapsed(System.Type,System.Double)">
+            <summary>
+            </summary>
+            <param name="ts"></param>
+            <param name="time"></param>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.UpdateTestSuiteTimeElapsed(System.Type)">
+            <summary>
+            </summary>
+            <param name="ts"></param>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.GetTestSuiteTimeElapsed(System.Type)">
+            <summary>
+            </summary>
+            <param name="ts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.SetTestTimeElapsed(System.Reflection.MethodInfo,System.Double)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <param name="time"></param>
+        </member>
+        <member name="M:RimTest.Testing.TimeElapsedExplorer.GetTestTimeElapsed(System.Reflection.MethodInfo)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RimTest.Testing.FilteredExplorer">
+            <summary>
+            Keeps track of filtered tests for easy test finding
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.failEnabledAsm">
+            <summary>
+            Are failed state asm shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.warningEnabledAsm">
+            <summary>
+            Are warning state asm shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.unknownEnabledAsm">
+            <summary>
+            Are unknown state asm shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.passEnabledAsm">
+            <summary>
+            Are passed state asm shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.failEnabledTS">
+            <summary>
+            Are failed state TS shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.warningEnabledTS">
+            <summary>
+            Are warning state TS shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.unknownEnabledTS">
+            <summary>
+            Are unknown state TS shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.skipEnabledTS">
+            <summary>
+            Are skipped state TS shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.passEnabledTS">
+            <summary>
+            Are passed state TS shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.failEnabledT">
+            <summary>
+            Are failed state T shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.unknownEnabledT">
+            <summary>
+            Are unknown state T shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.skipEnabledT">
+            <summary>
+            Are skipped state T shown?
+            </summary>
+        </member>
+        <member name="F:RimTest.Testing.FilteredExplorer.passEnabledT">
+            <summary>
+            Are passed state T shown?
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.UpdateFilter(System.Text.RegularExpressions.Regex)">
+            <summary>
+            </summary>
+            <param name="filter"></param>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesAssemblyStatusMatchesFilter(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesTestSuiteStatusMatchesFilter(System.Type)">
+            <summary>
+            </summary>
+            <param name="ts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesTestStatusMatchesFilter(System.Reflection.MethodInfo)">
+            <summary>
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesAssemblyMatchesFilter(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesTestSuiteMatchesFilter(System.Type)">
+            <summary>
+            </summary>
+            <param name="testSuite"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.DoesTestMatchesFilter(System.Reflection.MethodInfo)">
+            <summary>
+            </summary>
+            <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.GetFilteredAssemblies">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.GetFilteredTestSuites">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.GetFilteredTestSuites(System.Reflection.Assembly)">
+            <summary>
+            </summary>
+            <param name="asm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.GetFilteredTests">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.FilteredExplorer.GetFilteredTests(System.Type)">
+            <summary>
+            </summary>
+            <param name="ts"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RimTest.Testing.StatusExplorer">
+            <summary>
+            Keeps track of test statuses
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.UpdateAllStatusCounts">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.UpdateAssemblyStatusCount(RimTest.Testing.AssemblyStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.GetAssemblyStatusCount(RimTest.Testing.AssemblyStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.UpdateTestSuiteStatusCount(RimTest.Testing.TestSuiteStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.GetTestSuiteStatusCount(RimTest.Testing.TestSuiteStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.UpdateTestStatusCount(RimTest.Testing.TestStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:RimTest.Testing.StatusExplorer.GetTestStatusCount(RimTest.Testing.TestStatus)">
+            <summary>
+            </summary>
+            <param name="status"></param>
+        </member>
         <member name="T:RimTest.Testing.AssemblyExplorer">
             <summary>
             Stores and manages Assembly level data, aka known statuses and exceptions.
             </summary>
+        </member>
+        <member name="M:RimTest.Testing.AssemblyExplorer.GetAllKnownAssemblies">
+            <summary>
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:RimTest.Testing.AssemblyExplorer.SetAssemblyStatus(System.Reflection.Assembly,RimTest.Testing.AssemblyStatus)">
             <summary>
@@ -389,6 +653,11 @@
             <summary>
             Stores and manages Test Suite level data, aka known statuses and exceptions.
             </summary>
+        </member>
+        <member name="M:RimTest.Testing.TestSuiteExplorer.GetAllKnownTestSuites">
+            <summary>
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:RimTest.Testing.TestSuiteExplorer.SetTestSuiteStatus(System.Type,RimTest.Testing.TestSuiteStatus)">
             <summary>
@@ -459,6 +728,11 @@
             </summary>
             <param name="test"></param>
             <returns>current registered Exception else null if none registered</returns>
+        </member>
+        <member name="M:RimTest.Testing.TestExplorer.GetAllKnownTests">
+            <summary>
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:RimTest.Testing.Explorer">
             <summary>
@@ -580,6 +854,21 @@
         <member name="M:RimTest.RimTestMod.#ctor(Verse.ModContentPack)">
             <summary>
             Said entry point
+            </summary>
+        </member>
+        <member name="P:RimTest.RimTestMod.Settings">
+            <summary>
+             Settings getter
+            </summary>
+        </member>
+        <member name="M:RimTest.RimTestMod.DoSettingsWindowContents(UnityEngine.Rect)">
+            <summary>
+             Settings UI drawing logic
+            </summary>
+        </member>
+        <member name="M:RimTest.RimTestMod.SettingsCategory">
+            <summary>
+             Mod header in the mod config UI
             </summary>
         </member>
         <member name="T:RimTest.TestSuite">
